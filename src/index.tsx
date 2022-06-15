@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { createRoot } from 'react-dom/client';
+import Button from '@mui/material/Button';
 
 import * as styles from './test.scss';
 
@@ -9,9 +10,9 @@ function Counter() {
   return (
     <>
       <h1 className={styles.counter}>{count}</h1>
-      <button onClick={() => setCount(count + 1)}>
+      <Button onClick={() => setCount(count + 1)}>
         Increment
-      </button>
+      </Button>
     </>
   );
 }

@@ -16,7 +16,9 @@ module.exports = {
         test: /\.scss$/i,
         use: [
           ExtractCssChunks.loader,
-          { loader: 'css-modules-typescript-loader'},
+          {
+            loader: 'css-modules-typescript-loader',
+          },
           {
             loader: 'css-loader',
             options: {
