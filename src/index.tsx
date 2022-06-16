@@ -12,8 +12,9 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import GroupsIcon from '@mui/icons-material/Groups';
 import SettingsIcon from '@mui/icons-material/Settings';
 import {buttonTheme} from "./themes/button";
+import {iconTheme} from "./themes/icon";
 
-function Counter() {
+function App() {
   return (
     <>
       <Grid container spacing={3}>
@@ -21,46 +22,48 @@ function Counter() {
           <ThemeProvider theme={drawerTheme}>
             <Drawer variant="permanent" anchor="left">
               <List>
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <HomeIcon sx={{color: '#DDDDDD'}} />
-                    </ListItemIcon>
-                    <ListItemText primary = "Dashboard" />
-                  </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <TaskIcon sx={{color: '#DDDDDD'}} />
-                    </ListItemIcon>
-                    <ListItemText primary = "Your Courses" />
-                  </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <ManageAccountsIcon sx={{color: '#DDDDDD'}} />
-                    </ListItemIcon>
-                    <ListItemText primary = "Accounts" />
-                  </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <GroupsIcon sx={{color: '#DDDDDD'}} />
-                    </ListItemIcon>
-                    <ListItemText primary = "Groups" />
-                  </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <SettingsIcon sx={{color: '#DDDDDD'}} />
-                    </ListItemIcon>
-                    <ListItemText primary = "Preferences" />
-                  </ListItemButton>
-                </ListItem>
+                <ThemeProvider theme={iconTheme}>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <HomeIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Dashboard" />
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <TaskIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Your Courses" />
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <ManageAccountsIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Accounts" />
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <GroupsIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Groups" />
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <SettingsIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Preferences" />
+                    </ListItemButton>
+                  </ListItem>
+                </ThemeProvider>
               </List>
             </Drawer>
           </ThemeProvider>
@@ -79,5 +82,5 @@ const rootDiv = document.createElement('div');
 document.body.appendChild(rootDiv);
 
 const root = createRoot(rootDiv);
-root.render(<Counter />);
+root.render(<App />);
 
