@@ -3,6 +3,7 @@ const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  mode: 'development',
   entry: './src/index.tsx',
   devtool: 'inline-source-map',
   module: {
@@ -45,5 +46,13 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'build'),
     assetModuleFilename: 'images/[hash][ext][query]',
+  },
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname, 'build'),
+    },
+    compress: true,
+    port: 63342,
+    allowedHosts: 'auto',
   },
 };

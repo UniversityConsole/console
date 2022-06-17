@@ -10,7 +10,7 @@ export const buttonTheme = createTheme({
         contained: {
           background: '#4F46E5',
           '&:hover': {
-            background: '#655ef3',
+            background: '#7d78f1',
             boxShadow: 'none',
           },
           textTransform: 'none',

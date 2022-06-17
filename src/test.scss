@@ -5,4 +5,10 @@ body {
     .container {
         display: flex;
     }
+    .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 200px;
+    }
 }
