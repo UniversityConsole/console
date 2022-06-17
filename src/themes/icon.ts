@@ -1,13 +1,11 @@
-import {createTheme} from "@mui/material";
-
-export const iconTheme = createTheme({
+export const iconTheme = {
   components: {
     MuiSvgIcon: {
       styleOverrides: {
         root: {
           fill: '#DDDDDD',
-        }
-      }
-    }
-  }
-});
+        },
+      },
+    },
+  },
+};

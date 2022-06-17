@@ -1,6 +1,4 @@
-import {createTheme} from "@mui/material";
-
-export const buttonTheme = createTheme({
+export const buttonTheme = {
   components: {
     MuiButton: {
       defaultProps: {
@@ -26,7 +24,7 @@ export const buttonTheme = createTheme({
           textTransform: 'none',
           fontFamily: 'Source Sans Pro',
         },
-      }
-    }
-  }
-});
+      },
+    },
+  },
+};
