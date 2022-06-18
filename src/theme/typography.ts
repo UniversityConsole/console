@@ -1,29 +1,26 @@
 import {ThemeOptions} from "@mui/material";
 
 export const typographyTheme: ThemeOptions = {
-  components: {
-    MuiTypography: {
-      styleOverrides: {
-        root: {
-          fontFamily: "Source Sans Pro",
-        },
-        h1: {
-          fontSize: '2.5rem',
-          fontWeight: 600,
-        },
-        h2: {
-          fontSize: '2rem',
-          fontWeight: 600,
-        },
-        body1: {
-          fontSize: '1rem',
-          fontWeight: 500,
-        },
-        body2: {
-          fontSize: '1rem',
-          fontWeight: 600,
-        },
-      },
+  typography: {
+    fontFamily: [
+      'Inter',
+      'Source Sans Pro',
+      'Roboto',
+      'Helvetica',
+      'sans-serif',
+    ].join(','),
+    h1: {
+      fontSize: '2rem',
+      fontWeight: 800,
+      letterSpacing: '-0.75px',
+    },
+    h2: {
+      fontSize: '1.5rem',
+      fontWeight: 800,
+    },
+    body1: {
+      fontSize: '1rem',
+      fontWeight: 400,
     },
   },
 };

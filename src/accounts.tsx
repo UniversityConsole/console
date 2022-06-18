@@ -1,19 +1,21 @@
-import {Container, Typography} from "@mui/material";
 import React from "react";
 import CustomPaginationActionsTable from "./paginatedTable";
+import {ConsoleHeader} from "./ConsoleHeader";
+import {Button} from "@mui/material";
 
 export default function Accounts() {
+  const consoleActions = (
+    <>
+      <Button variant="contained">Create Account</Button>
+    </>
+  );
+
   return (
     <>
-      <Container>
-        <Typography variant='h1'>
-          Accounts
-        </Typography>
-        <Typography variant='body1'>
-          View and manage the user accounts registered on University Console.
-        </Typography>
-        <CustomPaginationActionsTable/>
-      </Container>
+      <ConsoleHeader title="Accounts" actions={consoleActions}>
+        View and manage the user accounts registered on University Console.
+      </ConsoleHeader>
+      <CustomPaginationActionsTable/>
     </>
-  )
+  );
 }
