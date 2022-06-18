@@ -1,4 +1,6 @@
-export const containerTheme = {
+import {ThemeOptions} from "@mui/material";
+
+export const containerTheme: ThemeOptions = {
   components: {
     MuiContainer: {
       styleOverrides: {

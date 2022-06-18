@@ -1,4 +1,6 @@
-export const buttonTheme = {
+import {ThemeOptions} from "@mui/material";
+
+export const buttonTheme: ThemeOptions = {
   components: {
     MuiButton: {
       defaultProps: {

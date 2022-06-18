@@ -1,4 +1,6 @@
-export const tableTheme = {
+import {ThemeOptions} from "@mui/material";
+
+export const tableTheme: ThemeOptions = {
   components: {
     MuiTableCell: {
       styleOverrides: {
