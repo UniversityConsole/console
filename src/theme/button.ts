@@ -8,23 +8,20 @@ export const buttonTheme: ThemeOptions = {
       },
       styleOverrides: {
         contained: {
-          background: '#4F46E5',
+          background: 'rgb(79,70,229)',
           '&:hover': {
-            background: '#7d78f1',
-            boxShadow: 'none',
+            background: 'rgb(67, 56, 202)',
+            boxShadow: '0 0 1px 0 rgba(0, 0, 0, 0.05)',
           },
           textTransform: 'none',
-          border: '1px solid #4F46E5',
-          fontFamily: 'Source Sans Pro',
-          boxShadow: 'none',
+          boxShadow: '0 0 1px 0 rgba(0, 0, 0, 0.05)',
         },
         text: {
-          color: '#4350E8',
+          color: '#444',
           '&:hover': {
             background: 'transparent',
           },
           textTransform: 'none',
-          fontFamily: 'Source Sans Pro',
         },
       },
     },

@@ -50,15 +50,12 @@ export const Drawer = () => {
   return (
     <MUIDrawer variant="permanent" anchor="left">
       <List>
-        {itemList.map((item, index) => {
-          const {text, icon, onClick} = item;
-          return (
-            <ListItem button key={text} onClick={onClick}>
-              {icon && <ListItemIcon>{icon}</ListItemIcon>}
-              <ListItemText primary={text}/>
-            </ListItem>
-          );
-        })}
+        {itemList.map(({text, icon, onClick}) => (
+          <ListItem button key={text} onClick={onClick} sx={{fontWeight: 500}}>
+            {icon && <ListItemIcon sx={{minWidth: 24, mr: '16px'}}>{icon}</ListItemIcon>}
+            <ListItemText primary={text}/>
+          </ListItem>
+        ))}
       </List>
       <List className={styles.footer}>
         <div>
