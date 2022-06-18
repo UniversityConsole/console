@@ -12,7 +12,7 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import GroupsIcon from "@mui/icons-material/Groups";
 import SettingsIcon from "@mui/icons-material/Settings";
 import {Drawer as MUIDrawer} from '@mui/material';
-import * as styles from './fonts.scss';
+import styles from './fonts.scss';
 import * as React from "react";
 import {useNavigate} from "react-router-dom";
 

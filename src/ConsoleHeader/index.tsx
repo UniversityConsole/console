@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Typography} from "@mui/material";
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 export interface Props {
   readonly title: React.ReactNode;
