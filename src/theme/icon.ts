@@ -1,4 +1,6 @@
-export const iconTheme = {
+import {ThemeOptions} from "@mui/material";
+
+export const iconTheme: ThemeOptions = {
   components: {
     MuiSvgIcon: {
       styleOverrides: {

@@ -8,30 +8,10 @@ import Accounts from "./accounts";
 import Groups from "./groups";
 import Courses from "./courses";
 import Preferences from "./preferences";
-import {createTheme, ThemeOptions, ThemeProvider} from "@mui/material";
-import {deepmerge} from '@mui/utils';
-import {buttonTheme} from "./themes/button";
-import {containerTheme} from "./themes/container";
-import {drawerTheme} from "./themes/drawer";
-import {iconTheme} from "./themes/icon";
-import {paperTheme} from "./themes/paper";
-import {tableTheme} from "./themes/table";
-import {typographyTheme} from "./themes/typography";
+import {ThemeProvider} from "@mui/material";
+import {theme} from "./theme";
 
 function App() {
-  const componentThemes = [
-    buttonTheme,
-    containerTheme,
-    drawerTheme,
-    iconTheme,
-    paperTheme,
-    tableTheme,
-    typographyTheme,
-  ];
-
-  // @ts-ignore
-  const themeOptions: ThemeOptions = componentThemes.reduce(deepmerge, {});
-  const theme = createTheme(themeOptions);
   return (
     <div className={styles.container}>
       <ThemeProvider theme={theme}>

@@ -1,4 +1,6 @@
-export const typographyTheme = {
+import {ThemeOptions} from "@mui/material";
+
+export const typographyTheme: ThemeOptions = {
   components: {
     MuiTypography: {
       styleOverrides: {

@@ -1,4 +1,6 @@
-export const drawerTheme = {
+import {ThemeOptions} from "@mui/material";
+
+export const drawerTheme: ThemeOptions = {
   components: {
     MuiDrawer: {
       styleOverrides: {
