@@ -3,13 +3,18 @@ import {ConsoleHeader} from "../ConsoleHeader";
 import {Button} from "@mui/material";
 import {PaginatedTable} from "../DataTable";
 import {ContactDetails} from "./ContactDetails";
+import {useNavigate} from "react-router-dom";
 
 export function Accounts() {
+  const navigate = useNavigate();
   const [contactDetailsAccount, setContactDetailsAccount] = useState<string | null>(null);
 
   const consoleActions = (
     <>
-      <Button variant="contained">Create Account</Button>
+      <Button
+        variant="contained"
+        onClick={() => navigate('/create-account')}
+      >Create Account</Button>
     </>
   );
 

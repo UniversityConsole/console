@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {createRoot} from 'react-dom/client';
-import * as styles from './fonts.scss';
 import {Drawer} from "./drawer";
 import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
 import Dashboard from "./dashboard";
@@ -11,6 +10,7 @@ import Preferences from "./preferences";
 import {Box, CssBaseline, ThemeProvider} from "@mui/material";
 import {theme} from "./theme";
 import {DRAWER_WIDTH} from "./theme/drawer";
+import {CreateAccount} from "./CreateAccount";
 
 function App() {
   return (
@@ -35,6 +35,7 @@ function App() {
               <Route path="/accounts" element={<Accounts/>}/>
               <Route path="/groups" element={<Groups/>}/>
               <Route path="/preferences" element={<Preferences/>}/>
+              <Route path="/create-account" element={<CreateAccount/>}/>
             </Routes>
           </Box>
         </Box>

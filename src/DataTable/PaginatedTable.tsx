@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Button,
   Paper,
   Table,
   TableBody,
@@ -11,7 +10,7 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material';
-import TablePaginationActions from "./pagination";
+import TablePaginationActions from "./Pagination";
 
 export interface Props<T> {
   readonly columnDefinitions: ColumnDefinition<T>[];

@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useState} from "react";
-import {Button, Dialog, DialogActions, DialogContent, DialogTitle, List} from "@mui/material";
-import {BasicTable} from "../DataTable/BasicTable";
+import {Button, Dialog, DialogActions, DialogContent, DialogTitle} from "@mui/material";
+import {BasicTable} from "../DataTable";
 
 interface Props<T> {
   readonly accountId: string;
