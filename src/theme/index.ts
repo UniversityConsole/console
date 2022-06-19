@@ -7,6 +7,7 @@ import {tableTheme} from "./table";
 import {typographyTheme} from "./typography";
 import {deepmerge} from "@mui/utils";
 import {createTheme} from "@mui/material";
+import {dialogTheme} from "./dialog";
 
 const PARTS = [
   buttonTheme,
@@ -16,6 +17,7 @@ const PARTS = [
   paperTheme,
   tableTheme,
   typographyTheme,
+  dialogTheme,
 ];
 
 export const theme = createTheme(PARTS.reduce((p, c) => deepmerge(p, c), PARTS.shift()!!));

@@ -4,7 +4,7 @@ import * as styles from './fonts.scss';
 import {Drawer} from "./drawer";
 import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
 import Dashboard from "./dashboard";
-import Accounts from "./accounts";
+import {Accounts} from "./Accounts";
 import Groups from "./groups";
 import Courses from "./courses";
 import Preferences from "./preferences";

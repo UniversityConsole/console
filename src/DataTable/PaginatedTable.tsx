@@ -13,19 +13,19 @@ import {
 } from '@mui/material';
 import TablePaginationActions from "./pagination";
 
-interface Props<T> {
+export interface Props<T> {
   readonly columnDefinitions: ColumnDefinition<T>[];
   readonly isLoading: boolean;
   readonly items: T[];
 }
 
-interface ColumnDefinition<T> {
+export interface ColumnDefinition<T> {
   readonly id: string;
   readonly head: React.ReactNode;
   readonly cell: (item: T) => React.ReactNode;
 }
 
-export default function PaginatedTable<T>(props: Props<T>) {
+export function PaginatedTable<T>(props: Props<T>) {
   const {items, columnDefinitions, isLoading} = props;
 
   const [page, setPage] = React.useState(0);

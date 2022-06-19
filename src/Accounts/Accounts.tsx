@@ -1,9 +1,12 @@
-import React from "react";
-import {ConsoleHeader} from "./ConsoleHeader";
+import React, {useState} from "react";
+import {ConsoleHeader} from "../ConsoleHeader";
 import {Button} from "@mui/material";
-import PaginatedTable from "./DataTable/table";
+import {PaginatedTable} from "../DataTable";
+import {ContactDetails} from "./ContactDetails";
 
-export default function Accounts() {
+export function Accounts() {
+  const [contactDetailsAccount, setContactDetailsAccount] = useState<string | null>(null);
+
   const consoleActions = (
     <>
       <Button variant="contained">Create Account</Button>
@@ -27,13 +30,23 @@ export default function Accounts() {
           { id: 'id', head: 'ID', cell: item => item.id },
           { id: 'firstName', head: 'First Name', cell: item => item.firstName },
           { id: 'lastName', head: 'Last Name', cell: item => item.lastName },
-          { id: 'actions', head: '', cell: () => (
-            <Button variant="text">Contact Details</Button>
-            ) },
+          { id: 'actions', head: '', cell: item => (
+            <Button
+              variant="text"
+              onClick={() => setContactDetailsAccount(item.id)}
+            >
+              Contact Details
+            </Button>
+          ) },
         ]}
         items={accounts}
         isLoading={false}
       />
+
+      {contactDetailsAccount !== null && <ContactDetails
+          accountId={contactDetailsAccount}
+          onClose={() => setContactDetailsAccount(null)}
+      />}
     </>
   );
 }
