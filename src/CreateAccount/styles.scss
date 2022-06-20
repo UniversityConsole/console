@@ -1,8 +1,5 @@
 .root {
-  display: inline-block;
+  display: flex;
   justify-content: space-between;
-
-  .form {
-    width: 50%;
-  }
+  margin: 12px 0 12px auto;
 }

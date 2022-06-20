@@ -6,10 +6,17 @@ export const formTheme: ThemeOptions = {
       styleOverrides: {
         root: {
           width: '100%',
-          height: '38px',
           margin: '0',
         },
       },
     },
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          width: '50%',
+          margin: '12px 10px 12px 0',
+        }
+      }
+    }
   },
 };
