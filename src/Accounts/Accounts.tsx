@@ -19,10 +19,10 @@ export function Accounts() {
   );
 
   const accounts = [
-    { id: '123', firstName: 'Victor', lastName: 'Barbu', email: 'vicbarbu@pm.me' },
-    { id: '234', firstName: 'Anita', lastName: 'Grigore', email: 'anita.grigore1@gmail.com' },
-    { id: '345', firstName: 'John', lastName: 'Doe', email: 'john@example.com' },
-    { id: '2345', firstName: 'Jane', lastName: 'Doe', email: 'jane@example.com' },
+    { id: '1', name: "Torsten Paulsson", date: "Sep 5, 2021", status: "Active"},
+    { id: '2', name: "Anita Grigore", date: "June 10, 2022", status: "Active"},
+    { id: '3', name: "Victor Barbu", date: "June 10, 2022", status: "Pending"},
+    { id: '4', name: "John Doe", date: "Jan 12, 2020", status: "Deactivated"},
   ];
 
   return (
@@ -32,9 +32,9 @@ export function Accounts() {
       </ConsoleHeader>
       <PaginatedTable
         columnDefinitions={[
-          { id: 'id', head: 'ID', cell: item => item.id },
-          { id: 'firstName', head: 'First Name', cell: item => item.firstName },
-          { id: 'lastName', head: 'Last Name', cell: item => item.lastName },
+          { id: 'name', head: 'Name', cell: item => item.name },
+          { id: 'date', head: 'Registration Date', cell: item => item.date },
+          { id: 'status', head: 'Status', cell: item => item.status },
           { id: 'actions', head: '', cell: item => (
             <Button
               variant="text"

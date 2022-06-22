@@ -29,7 +29,6 @@ export function CreateAccount() {
       <Container component={Paper}>
         <Box
           component="form"
-          noValidate
           onSubmit={handleSubmit}
         >
           <FormControl>

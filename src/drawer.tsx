@@ -4,7 +4,7 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  ListItemText,
+  ListItemText, Toolbar, Typography,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import TaskIcon from "@mui/icons-material/Task";
@@ -15,6 +15,7 @@ import {Drawer as MUIDrawer} from '@mui/material';
 import styles from './fonts.scss';
 import * as React from "react";
 import {useNavigate} from "react-router-dom";
+import {School} from "@mui/icons-material";
 
 export const Drawer = () => {
   const navigate = useNavigate();
@@ -49,6 +50,29 @@ export const Drawer = () => {
 
   return (
     <MUIDrawer variant="permanent" anchor="left">
+      <Toolbar disableGutters>
+        <School sx={{minWidth: 24, m: '16px'}}/>
+        <Typography
+          variant='h6'
+          noWrap
+          sx={{
+            fontFamily: 'Cormorant Garamond',
+            fontWeight: 300
+          }}
+        >
+          University
+        </Typography>
+        <Typography
+          variant='h6'
+          noWrap
+          sx={{
+            fontFamily: 'Cormorant Garamond',
+            fontWeight: 700
+          }}
+        >
+          Console
+        </Typography>
+      </Toolbar>
       <List>
         {itemList.map(({text, icon, onClick}) => (
           <ListItem button key={text} onClick={onClick} sx={{fontWeight: 500}}>
@@ -61,9 +85,9 @@ export const Drawer = () => {
         <div>
           <CardHeader
             avatar={
-              <Avatar>JD</Avatar>
+              <Avatar>AG</Avatar>
             }
-            title="John Doe"
+            title="Anita Grigore"
           />
         </div>
       </List>

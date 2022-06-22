@@ -1,6 +1,6 @@
 import {ThemeOptions} from "@mui/material";
 
-export const DRAWER_WIDTH = 200;
+export const DRAWER_WIDTH = 250;
 
 export const drawerTheme: ThemeOptions = {
   components: {

@@ -10,7 +10,7 @@ interface Props<T> {
 
 export function ContactDetails<T>(props: Props<T>) {
   const { accountId, onClose } = props;
-  const [data, setData] = useState({email: 'johndoe@example.com', name: 'John Doe'});
+  const [data, setData] = useState({email: 'paulsson@example.com', name: 'Torsten Paulsson'},);
 
   const tableItems = [
     { label: 'Name', value: data.name },
