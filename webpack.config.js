@@ -1,9 +1,12 @@
 const path = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin;
+const CompressionPlugin  = require('compression-webpack-plugin');
+const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: './src/index.tsx',
   devtool: 'inline-source-map',
   module: {
@@ -38,12 +41,17 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'UniversityConsole',
     }),
+    new StatsWriterPlugin({
+      fields: null,
+      stats: {chunkModules: true}
+    }),
   ],
   resolve: {
     extensions: [ '.tsx', '.ts', '.js' ],
   },
   output: {
     filename: '[name].[contenthash].js',
+    chunkFilename: '[name].bundle.js',
     path: path.resolve(__dirname, 'build'),
     assetModuleFilename: 'images/[hash][ext][query]',
   },
