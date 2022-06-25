@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Typography} from "@mui/material";
+import Typography from "@mui/material/Typography";
 import styles from './styles.scss';
 
 export interface Props {

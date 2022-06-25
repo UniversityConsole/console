@@ -6,7 +6,7 @@ import {paperTheme} from "./paper";
 import {tableTheme} from "./table";
 import {typographyTheme} from "./typography";
 import {deepmerge} from "@mui/utils";
-import {createTheme} from "@mui/material";
+import {createTheme} from "@mui/material/styles";
 import {dialogTheme} from "./dialog";
 import {formTheme} from "./TextField";
 

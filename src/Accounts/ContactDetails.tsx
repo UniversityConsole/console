@@ -1,6 +1,10 @@
 import * as React from "react";
 import {useState} from "react";
-import {Button, Dialog, DialogActions, DialogContent, DialogTitle} from "@mui/material";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
 import {BasicTable} from "../DataTable";
 
 interface Props<T> {
@@ -8,7 +12,7 @@ interface Props<T> {
   readonly onClose: () => void;
 }
 
-export function ContactDetails<T>(props: Props<T>) {
+export default function ContactDetails<T>(props: Props<T>) {
   const { accountId, onClose } = props;
   const [data, setData] = useState({email: 'paulsson@example.com', name: 'Torsten Paulsson'},);
 

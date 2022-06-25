@@ -1,16 +1,20 @@
 import * as React from 'react';
 import {createRoot} from 'react-dom/client';
-import {Drawer} from "./drawer";
+import {MUIDrawer} from "./drawer";
 import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
-import Dashboard from "./dashboard";
-import {Accounts} from "./Accounts";
-import Groups from "./groups";
-import Courses from "./courses";
-import Preferences from "./preferences";
-import {Box, CssBaseline, ThemeProvider} from "@mui/material";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import {ThemeProvider} from "@mui/material/styles";
 import {theme} from "./theme";
 import {DRAWER_WIDTH} from "./theme/drawer";
-import {CreateAccount} from "./CreateAccount";
+import {Suspense} from "react";
+
+const Dashboard = React.lazy(() => import(/* webpackChunkName: "dashboard" */'./dashboard'));
+const Courses = React.lazy(() => import(/* webpackChunkName: "courses" */ './courses'));
+const Accounts = React.lazy(() => import(/* webpackChunkName: "accounts" */ './Accounts/Accounts'));
+const Groups = React.lazy(() => import(/* webpackChunkName: "groups" */ './groups'));
+const Preferences = React.lazy(() => import(/* webpackChunkName: "preferences" */ './preferences'));
+const CreateAccount = React.lazy(() => import(/* webpackChunkName: "createAccount" */ './CreateAccount/CreateAccount'));
 
 function App() {
   return (
@@ -22,21 +26,23 @@ function App() {
             component="nav"
             sx={{width: DRAWER_WIDTH, flexShrink: 0}}
           >
-            <Drawer/>
+            <MUIDrawer/>
           </Box>
           <Box
             component="main"
             sx={{flexGrow: 1, p: 3, width: `calc(100% - ${DRAWER_WIDTH}px)`}}
           >
-            <Routes>
-              <Route path="/" element={<Navigate to="/dashboard"/>}/>
-              <Route path="/dashboard" element={<Dashboard/>}/>
-              <Route path="/courses" element={<Courses/>}/>
-              <Route path="/accounts" element={<Accounts/>}/>
-              <Route path="/groups" element={<Groups/>}/>
-              <Route path="/preferences" element={<Preferences/>}/>
-              <Route path="/create-account" element={<CreateAccount/>}/>
-            </Routes>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Routes>
+                <Route path="/" element={<Navigate to="/dashboard"/>}/>
+                <Route path="/dashboard" element={<Dashboard/>}/>
+                <Route path="/courses" element={<Courses/>}/>
+                <Route path="/accounts" element={<Accounts/>}/>
+                <Route path="/groups" element={<Groups/>}/>
+                <Route path="/preferences" element={<Preferences/>}/>
+                <Route path="/create-account" element={<CreateAccount/>}/>
+              </Routes>
+            </Suspense>
           </Box>
         </Box>
       </ThemeProvider>

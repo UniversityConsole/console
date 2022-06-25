@@ -1,10 +1,16 @@
-import {Box, Button, Container, FormControl, Grid, InputLabel, MenuItem, Paper, Select, TextField} from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import FormControl from "@mui/material/FormControl";
+import MenuItem from "@mui/material/MenuItem";
+import Paper from "@mui/material/Paper";
+import TextField from "@mui/material/TextField";
 import * as React from "react";
 import {ChangeEvent, FormEvent, useState} from "react";
 import {ConsoleHeader} from "../ConsoleHeader";
 import styles from './styles.scss';
 
-export function CreateAccount() {
+export default function CreateAccount() {
   const [permission, setPermission] = useState('');
   const permissions = [
     'Professor', 'TA', 'Student', 'Administrator'

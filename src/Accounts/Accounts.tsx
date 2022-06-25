@@ -1,14 +1,14 @@
-import React, {useState} from "react";
+import React, {useState, Suspense} from "react";
 import {ConsoleHeader} from "../ConsoleHeader";
-import {Button} from "@mui/material";
+import Button from "@mui/material/Button";
 import {PaginatedTable} from "../DataTable";
-import {ContactDetails} from "./ContactDetails";
 import {useNavigate} from "react-router-dom";
 
-export function Accounts() {
+export default function Accounts() {
   const navigate = useNavigate();
   const [contactDetailsAccount, setContactDetailsAccount] = useState<string | null>(null);
 
+  const ContactDetails = React.lazy(() => import('./ContactDetails'))
   const consoleActions = (
     <>
       <Button
@@ -48,10 +48,14 @@ export function Accounts() {
         isLoading={false}
       />
 
-      {contactDetailsAccount !== null && <ContactDetails
-          accountId={contactDetailsAccount}
-          onClose={() => setContactDetailsAccount(null)}
-      />}
+      {contactDetailsAccount !== null &&
+        <Suspense fallback={<div>Loading...</div>}>
+          <ContactDetails
+            accountId={contactDetailsAccount}
+            onClose={() => setContactDetailsAccount(null)}
+          />
+        </Suspense>
+      }
     </>
   );
 }
