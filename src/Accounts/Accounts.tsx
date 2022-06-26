@@ -8,7 +8,7 @@ export default function Accounts() {
   const navigate = useNavigate();
   const [contactDetailsAccount, setContactDetailsAccount] = useState<string | null>(null);
 
-  const ContactDetails = React.lazy(() => import('./ContactDetails'))
+  const ContactDetails = React.lazy(() => import(/* webpackChunkName: "contactDetails" */'./ContactDetails'))
   const consoleActions = (
     <>
       <Button
