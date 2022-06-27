@@ -2,8 +2,6 @@ const path = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin;
-const CompressionPlugin  = require('compression-webpack-plugin');
-const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
 
 module.exports = {
   mode: 'development',
@@ -54,6 +52,22 @@ module.exports = {
     chunkFilename: '[name].[contenthash].bundle.js',
     path: path.resolve(__dirname, 'build'),
     assetModuleFilename: 'images/[hash][ext][query]',
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        reactVendor: {
+          test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom)[\\/]/,
+          name: 'vendor-react',
+          chunks: 'all',
+        },
+        muiVendor: {
+          test: /[\\/]node_modules[\\/](@mui)[\\/]/,
+          name: 'vendor-mui',
+          chunks: 'all',
+        },
+      },
+    },
   },
   devServer: {
     static: {
