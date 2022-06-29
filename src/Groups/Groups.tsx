@@ -16,7 +16,7 @@ export default function Groups() {
     </>
   );
 
-  const accounts = [
+  const groups = [
     { id: '1', name: "1st Year CTI", role: "Owner"},
     { id: '2', name: "2nd Year CTI", role: "Member"},
     { id: '3', name: "3rd Year CTI", role: "Member"},
@@ -32,7 +32,7 @@ export default function Groups() {
           { id: 'name', head: 'Name', cell: item => item.name },
           { id: 'date', head: 'Role', cell: item => item.role },
         ]}
-        items={accounts}
+        items={groups}
         isLoading={false}
       />
     </>
