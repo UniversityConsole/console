@@ -9,6 +9,7 @@ import {deepmerge} from "@mui/utils";
 import {createTheme} from "@mui/material/styles";
 import {dialogTheme} from "./dialog";
 import {formTheme} from "./TextField";
+import {cardTheme} from "./card";
 
 const PARTS = [
   buttonTheme,
@@ -19,7 +20,8 @@ const PARTS = [
   tableTheme,
   typographyTheme,
   dialogTheme,
-  formTheme
+  formTheme,
+  cardTheme,
 ];
 
 export const theme = createTheme(PARTS.reduce((p, c) => deepmerge(p, c), PARTS.shift()!!));

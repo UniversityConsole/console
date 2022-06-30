@@ -9,7 +9,7 @@ import {theme} from "./theme";
 import {DRAWER_WIDTH} from "./theme/drawer";
 import {Suspense} from "react";
 
-const Dashboard = React.lazy(() => import(/* webpackChunkName: "dashboard" */'./dashboard'));
+const Dashboard = React.lazy(() => import(/* webpackChunkName: "dashboard" */'./Dashboard/Dashboard'));
 const Courses = React.lazy(() => import(/* webpackChunkName: "courses" */ './Courses/Courses'));
 const Accounts = React.lazy(() => import(/* webpackChunkName: "accounts" */ './Accounts/Accounts'));
 const Groups = React.lazy(() => import(/* webpackChunkName: "groups" */ './Groups/Groups'));
