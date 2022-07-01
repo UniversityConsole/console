@@ -13,7 +13,7 @@ const Dashboard = React.lazy(() => import(/* webpackChunkName: "dashboard" */'./
 const Courses = React.lazy(() => import(/* webpackChunkName: "courses" */ './Courses/Courses'));
 const Accounts = React.lazy(() => import(/* webpackChunkName: "accounts" */ './Accounts/Accounts'));
 const Groups = React.lazy(() => import(/* webpackChunkName: "groups" */ './Groups/Groups'));
-const Preferences = React.lazy(() => import(/* webpackChunkName: "preferences" */ './preferences'));
+const Preferences = React.lazy(() => import(/* webpackChunkName: "preferences" */ './Preferences/Preferences'));
 const CreateAccount = React.lazy(() => import(/* webpackChunkName: "createAccount" */ './CreateAccount/CreateAccount'));
 const CreateGroup = React.lazy(() => import(/* webpackChunkName: "createGroup" */ './CreateGroup/CreateGroup'));
 const CreateCourse = React.lazy(() => import(/* webpackChunkName: "createCourse" */ './CreateCourse/CreateCourse'));

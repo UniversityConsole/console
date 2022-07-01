@@ -45,7 +45,7 @@ export default function Dashboard() {
           </Card>
         </Grid>
       </Grid>
-      <Typography variant="h2" sx={{mb: '15px'}}>
+      <Typography variant="h2">
         Your active courses
       </Typography>
       <PaginatedTable

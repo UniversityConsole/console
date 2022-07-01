@@ -7,7 +7,6 @@ export const tableTheme: ThemeOptions = {
         root: {
           fontSize: '1rem',
           fontWeight: 500,
-          fontFamily: 'Source Sans Pro',
         },
         head: {
           fontSize: '1rem',

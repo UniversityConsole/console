@@ -21,7 +21,9 @@ export const buttonTheme: ThemeOptions = {
           '&:hover': {
             background: 'transparent',
           },
+          fontSize: '16px',
           textTransform: 'none',
+          padding: 0,
         },
       },
     },
