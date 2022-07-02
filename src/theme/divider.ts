@@ -1,11 +1,11 @@
 import {ThemeOptions} from "@mui/material/styles";
 
-export const iconTheme: ThemeOptions = {
+export const dividerTheme: ThemeOptions = {
   components: {
-    MuiSvgIcon: {
+    MuiDivider: {
       styleOverrides: {
         root: {
-          fill: '#DDDDDD',
+          margin: '15px 0 15px 0',
         },
       },
     },

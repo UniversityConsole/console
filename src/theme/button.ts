@@ -1,4 +1,4 @@
-import {ThemeOptions} from "@mui/material";
+import {ThemeOptions} from "@mui/material/styles";
 
 export const buttonTheme: ThemeOptions = {
   components: {
@@ -21,7 +21,9 @@ export const buttonTheme: ThemeOptions = {
           '&:hover': {
             background: 'transparent',
           },
+          fontSize: '16px',
           textTransform: 'none',
+          padding: 0,
         },
       },
     },

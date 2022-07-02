@@ -1,24 +1,37 @@
-import React, {useState} from "react";
+import React, {useState, Suspense} from "react";
 import {ConsoleHeader} from "../ConsoleHeader";
-import {Button} from "@mui/material";
+import Button from "@mui/material/Button";
 import {PaginatedTable} from "../DataTable";
-import {ContactDetails} from "./ContactDetails";
+import {useNavigate} from "react-router-dom";
+import {prettyPrintAccountState} from "../AccountsEndpoint/types";
 
-export function Accounts() {
+
+export default function Accounts() {
+  const navigate = useNavigate();
   const [contactDetailsAccount, setContactDetailsAccount] = useState<string | null>(null);
 
+  const ContactDetails = React.lazy(() => import(/* webpackChunkName: "contactDetails" */'./ContactDetails'))
   const consoleActions = (
     <>
-      <Button variant="contained">Create Account</Button>
+      <Button
+        variant="contained"
+        onClick={() => navigate('/create-account')}
+      >Create Account</Button>
     </>
   );
 
-  const accounts = [
-    { id: '123', firstName: 'Victor', lastName: 'Barbu', email: 'vicbarbu@pm.me' },
-    { id: '234', firstName: 'Anita', lastName: 'Grigore', email: 'anita.grigore1@gmail.com' },
-    { id: '345', firstName: 'John', lastName: 'Doe', email: 'john@example.com' },
-    { id: '2345', firstName: 'Jane', lastName: 'Doe', email: 'jane@example.com' },
-  ];
+  const accountsFn = () => {
+    let values = [];
+    let keys = Object.keys(window.localStorage).filter(key => key.startsWith('uc/account/'));
+    let i = keys.length;
+
+    while ( i-- ) {
+      values.push(window.localStorage.getItem(keys[i]));
+    }
+
+    return values;
+  }
+  const items = accountsFn();
 
   return (
     <>
@@ -27,26 +40,36 @@ export function Accounts() {
       </ConsoleHeader>
       <PaginatedTable
         columnDefinitions={[
-          { id: 'id', head: 'ID', cell: item => item.id },
-          { id: 'firstName', head: 'First Name', cell: item => item.firstName },
-          { id: 'lastName', head: 'Last Name', cell: item => item.lastName },
+          { id: 'name',
+            head: 'Name',
+            cell: item => JSON.parse(item!).firstName.concat(' ', JSON.parse(item || '').lastName) },
+          { id: 'date',
+            head: 'Registration Date',
+            cell: item => JSON.parse(item || '').registrationTimestamp },
+          { id: 'status',
+            head: 'Status',
+            cell: item => prettyPrintAccountState(JSON.parse(item || '').accountState) },
           { id: 'actions', head: '', cell: item => (
             <Button
               variant="text"
-              onClick={() => setContactDetailsAccount(item.id)}
+              onClick={() => setContactDetailsAccount(JSON.parse(item || '').accountId)}
             >
               Contact Details
             </Button>
           ) },
         ]}
-        items={accounts}
+        items={items}
         isLoading={false}
       />
 
-      {contactDetailsAccount !== null && <ContactDetails
-          accountId={contactDetailsAccount}
-          onClose={() => setContactDetailsAccount(null)}
-      />}
+      {contactDetailsAccount !== null &&
+        <Suspense fallback={<div>Loading...</div>}>
+          <ContactDetails
+            accountId={contactDetailsAccount}
+            onClose={() => setContactDetailsAccount(null)}
+          />
+        </Suspense>
+      }
     </>
   );
 }

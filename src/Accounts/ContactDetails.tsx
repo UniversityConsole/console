@@ -1,20 +1,26 @@
 import * as React from "react";
 import {useState} from "react";
-import {Button, Dialog, DialogActions, DialogContent, DialogTitle, List} from "@mui/material";
-import {BasicTable} from "../DataTable/BasicTable";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import {BasicTable} from "../DataTable";
 
 interface Props<T> {
   readonly accountId: string;
   readonly onClose: () => void;
 }
 
-export function ContactDetails<T>(props: Props<T>) {
+export default function ContactDetails<T>(props: Props<T>) {
   const { accountId, onClose } = props;
-  const [data, setData] = useState({email: 'johndoe@example.com', name: 'John Doe'});
+
+  const account = JSON.parse(localStorage.getItem(`uc/account/${accountId}`) || '');
+  console.log(account);
 
   const tableItems = [
-    { label: 'Name', value: data.name },
-    { label: 'Email', value: data.email },
+    { label: 'Name', value: account.firstName.concat(' ', account.lastName)},
+    { label: 'Email', value: account.email },
   ];
 
   return (

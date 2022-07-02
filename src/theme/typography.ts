@@ -1,4 +1,4 @@
-import {ThemeOptions} from "@mui/material";
+import {ThemeOptions} from "@mui/material/styles";
 
 export const typographyTheme: ThemeOptions = {
   typography: {
@@ -17,6 +17,7 @@ export const typographyTheme: ThemeOptions = {
     h2: {
       fontSize: '1.5rem',
       fontWeight: 800,
+      margin: '15px 0 15px 0'
     },
     body1: {
       fontSize: '1rem',

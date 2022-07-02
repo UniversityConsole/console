@@ -1,5 +1,5 @@
 import React from "react";
-import {Box} from "@mui/material";
+import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";

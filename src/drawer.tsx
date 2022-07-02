@@ -1,22 +1,24 @@
-import {
-  Avatar,
-  CardHeader,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
+import ListItemText from "@mui/material/ListItemText";
+import Avatar from "@mui/material/Avatar";
+import CardHeader from "@mui/material/CardHeader";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import ListItemIcon from "@mui/material/ListItemIcon";
 import HomeIcon from "@mui/icons-material/Home";
 import TaskIcon from "@mui/icons-material/Task";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import GroupsIcon from "@mui/icons-material/Groups";
 import SettingsIcon from "@mui/icons-material/Settings";
-import {Drawer as MUIDrawer} from '@mui/material';
+import Drawer from '@mui/material/Drawer';
 import styles from './fonts.scss';
 import * as React from "react";
 import {useNavigate} from "react-router-dom";
+import School from "@mui/icons-material/School";
+import {deepPurple} from "@mui/material/colors";
 
-export const Drawer = () => {
+export const MUIDrawer = () => {
   const navigate = useNavigate();
 
   const itemList = [
@@ -48,7 +50,30 @@ export const Drawer = () => {
   ];
 
   return (
-    <MUIDrawer variant="permanent" anchor="left">
+    <Drawer variant="permanent" anchor="left">
+      <Toolbar disableGutters>
+        <School sx={{minWidth: 24, m: '16px'}}/>
+        <Typography
+          variant='h6'
+          noWrap
+          sx={{
+            fontFamily: 'Cormorant Garamond',
+            fontWeight: 300
+          }}
+        >
+          University
+        </Typography>
+        <Typography
+          variant='h6'
+          noWrap
+          sx={{
+            fontFamily: 'Cormorant Garamond',
+            fontWeight: 700
+          }}
+        >
+          Console
+        </Typography>
+      </Toolbar>
       <List>
         {itemList.map(({text, icon, onClick}) => (
           <ListItem button key={text} onClick={onClick} sx={{fontWeight: 500}}>
@@ -61,13 +86,13 @@ export const Drawer = () => {
         <div>
           <CardHeader
             avatar={
-              <Avatar>JD</Avatar>
+              <Avatar sx={{ bgcolor: deepPurple[500] }}>AG</Avatar>
             }
-            title="John Doe"
+            title="Anita Grigore"
           />
         </div>
       </List>
-    </MUIDrawer>
+    </Drawer>
   );
 }
 
