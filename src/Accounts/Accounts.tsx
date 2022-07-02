@@ -3,6 +3,7 @@ import {ConsoleHeader} from "../ConsoleHeader";
 import Button from "@mui/material/Button";
 import {PaginatedTable} from "../DataTable";
 import {useNavigate} from "react-router-dom";
+import {prettyPrintAccountState} from "../AccountsEndpoint/types";
 
 
 export default function Accounts() {
@@ -47,7 +48,7 @@ export default function Accounts() {
             cell: item => JSON.parse(item || '').registrationTimestamp },
           { id: 'status',
             head: 'Status',
-            cell: item => JSON.parse(item || '').accountStatus },
+            cell: item => prettyPrintAccountState(JSON.parse(item || '').accountState) },
           { id: 'actions', head: '', cell: item => (
             <Button
               variant="text"

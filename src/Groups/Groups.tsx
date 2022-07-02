@@ -42,8 +42,9 @@ export default function Groups() {
       </ConsoleHeader>
       <PaginatedTable
         columnDefinitions={[
-          { id: 'name', head: 'Name', cell: item => JSON.parse(item || ''). name },
-          { id: 'role', head: 'Role', cell: item => 'Owner' }
+          { id: 'name', head: 'Name', cell: item => JSON.parse(item || '').name },
+          { id: 'description', head: 'Description', cell: item => JSON.parse(item || '').description },
+          { id: 'role', head: 'Role', cell: () => 'Owner' }
         ]}
         items={items}
         isLoading={false}

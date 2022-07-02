@@ -9,8 +9,9 @@ import * as React from "react";
 import {ChangeEvent, FormEventHandler, useState} from "react";
 import {ConsoleHeader} from "../ConsoleHeader";
 import styles from './styles.scss';
-import {createAccount, CreateAccountOutput} from "../Accounts/createAccountMock";
+import { CreateAccountOutput } from "../AccountsEndpoint/types";
 import {useNavigate} from "react-router-dom";
+import {LocalStorageEndpoint} from "../AccountsEndpoint/LocalStorageEndpoint";
 
 export default function CreateAccount() {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ export default function CreateAccount() {
   const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     setLoading(true);
-    createAccount({email, firstName, lastName, password})
+    LocalStorageEndpoint.createAccount({email, firstName, lastName, password})
       .then((output: CreateAccountOutput) => {
         setLoading(false);
         setAccountId(output.accountId);

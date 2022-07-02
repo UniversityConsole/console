@@ -1,11 +1,46 @@
 import Typography from "@mui/material/Typography";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {ConsoleHeader} from "../ConsoleHeader";
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
+import {LocalStorageEndpoint} from "../AccountsEndpoint/LocalStorageEndpoint";
+import {TextValueEditor} from "./TextValueEditor";
+import {Account} from "../AccountsEndpoint/types";
 
 export default function Preferences() {
+  const [preferredName, setPreferredName] = useState('');
+  const [isEditing, setIsEditing] = useState<string | null>(null);
+  const [isLoading, setLoading] = useState(true);
+
+  const onSave = (value: string) => {
+    const accountId = window.localStorage.getItem('uc/me');
+    if (accountId === null) {
+      throw new Error('No account id found');
+    }
+
+    LocalStorageEndpoint.updatePreferredName({accountId, preferredName: value})
+      .then(() => {
+        setIsEditing(null);
+        setPreferredName(value);
+      });
+  };
+
+  useEffect(() => {
+    const accountId = window.localStorage.getItem('uc/me');
+    if (accountId === null) {
+      throw new Error('No account id found');
+    }
+
+    LocalStorageEndpoint.getAccount(accountId)
+      .then((account: Account) => {
+        setPreferredName(account.preferredName || '');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <>
       <ConsoleHeader title="Preferences">
@@ -26,16 +61,29 @@ export default function Preferences() {
       <Divider/>
       <Grid container spacing={3} >
         <Grid item xs={4}>
-          Preferred name
+          Preferred Name
         </Grid>
-        <Grid item xs={4}>
-          Anita Grigore
-        </Grid>
-        <Grid item xs={4}>
-          <Button variant="text">
-            Update
-          </Button>
-        </Grid>
+        {isEditing === 'preferredName' ?
+          <Grid item xs={8}>
+            <TextValueEditor
+                currentValue={preferredName}
+                onSave={onSave}
+                onCancel={() => setIsEditing(null)}/>
+          </Grid> :
+          <>
+            <Grid item xs={4}>
+              {isLoading ?
+                <Typography variant="body1"> Loading... </Typography> :
+                preferredName}
+            </Grid>
+            <Grid item xs={4}>
+              <Button variant="text" onClick={() => setIsEditing("preferredName")}>
+                Update
+              </Button>
+            </Grid>
+          </>
+        }
+
       </Grid>
       <Divider/>
       <Grid container spacing={3} sx={{mb: '30px'}}>
