@@ -14,11 +14,13 @@ interface Props<T> {
 
 export default function ContactDetails<T>(props: Props<T>) {
   const { accountId, onClose } = props;
-  const [data, setData] = useState({email: 'paulsson@example.com', name: 'Torsten Paulsson'},);
+
+  const account = JSON.parse(localStorage.getItem(`uc/account/${accountId}`) || '');
+  console.log(account);
 
   const tableItems = [
-    { label: 'Name', value: data.name },
-    { label: 'Email', value: data.email },
+    { label: 'Name', value: account.firstName.concat(' ', account.lastName)},
+    { label: 'Email', value: account.email },
   ];
 
   return (

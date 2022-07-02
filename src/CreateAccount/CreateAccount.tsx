@@ -6,25 +6,40 @@ import MenuItem from "@mui/material/MenuItem";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import * as React from "react";
-import {ChangeEvent, FormEvent, useState} from "react";
+import {ChangeEvent, FormEventHandler, useState} from "react";
 import {ConsoleHeader} from "../ConsoleHeader";
 import styles from './styles.scss';
+import {createAccount, CreateAccountOutput} from "../Accounts/createAccountMock";
+import {useNavigate} from "react-router-dom";
 
 export default function CreateAccount() {
+  const navigate = useNavigate();
   const [permission, setPermission] = useState('');
+  const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setLoading] = useState(false);
+  const [accountId, setAccountId] = useState('');
+
   const permissions = [
     'Professor', 'TA', 'Student', 'Administrator'
   ]
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    console.log(permission);
-  };
-
   const handleOnChange= (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     setPermission(event.target.value);
+  };
+
+  const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    createAccount({email, firstName, lastName, password})
+      .then((output: CreateAccountOutput) => {
+        setLoading(false);
+        setAccountId(output.accountId);
+      });
+    navigate('/accounts');
   };
 
   return (
@@ -35,7 +50,7 @@ export default function CreateAccount() {
       <Container component={Paper}>
         <Box
           component="form"
-          onSubmit={handleSubmit}
+          onSubmit={onSubmit}
         >
           <FormControl>
             <TextField
@@ -45,6 +60,8 @@ export default function CreateAccount() {
               margin="normal"
               size="small"
               type="text"
+              value={firstName}
+              onChange={e => setFirstName(e.target.value)}
             />
           </FormControl>
           <FormControl>
@@ -55,6 +72,8 @@ export default function CreateAccount() {
               margin="normal"
               size="small"
               type="text"
+              value={lastName}
+              onChange={e => setLastName(e.target.value)}
             />
           </FormControl>
           <FormControl>
@@ -65,6 +84,20 @@ export default function CreateAccount() {
               margin="normal"
               size="small"
               type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+          </FormControl>
+          <FormControl>
+            <TextField
+              required
+              label="Password"
+              fullWidth
+              margin="normal"
+              size="small"
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
             />
           </FormControl>
           <FormControl>
@@ -83,7 +116,9 @@ export default function CreateAccount() {
             </TextField>
           </FormControl>
           <div className={styles.root}>
-            <Button variant="contained" type="submit">Create</Button>
+            <Button variant="contained" type="submit" disabled={isLoading}>
+              {isLoading ? 'Creating Account...' : 'Create Account'}
+            </Button>
           </div>
         </Box>
       </Container>

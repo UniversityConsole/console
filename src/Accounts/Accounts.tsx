@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import {PaginatedTable} from "../DataTable";
 import {useNavigate} from "react-router-dom";
 
+
 export default function Accounts() {
   const navigate = useNavigate();
   const [contactDetailsAccount, setContactDetailsAccount] = useState<string | null>(null);
@@ -18,12 +19,18 @@ export default function Accounts() {
     </>
   );
 
-  const accounts = [
-    { id: '1', name: "Torsten Paulsson", date: "Sep 5, 2021", status: "Active"},
-    { id: '2', name: "Anita Grigore", date: "June 10, 2022", status: "Active"},
-    { id: '3', name: "Victor Barbu", date: "June 10, 2022", status: "Pending"},
-    { id: '4', name: "John Doe", date: "Jan 12, 2020", status: "Deactivated"},
-  ];
+  const accountsFn = () => {
+    let values = [];
+    let keys = Object.keys(window.localStorage);
+    let i = keys.length;
+
+    while ( i-- ) {
+      values.push(window.localStorage.getItem(keys[i]));
+    }
+
+    return values
+  }
+  const items = accountsFn();
 
   return (
     <>
@@ -32,19 +39,21 @@ export default function Accounts() {
       </ConsoleHeader>
       <PaginatedTable
         columnDefinitions={[
-          { id: 'name', head: 'Name', cell: item => item.name },
-          { id: 'date', head: 'Registration Date', cell: item => item.date },
-          { id: 'status', head: 'Status', cell: item => item.status },
+          { id: 'name',
+            head: 'Name',
+            cell: item => JSON.parse(item!).firstName.concat(' ', JSON.parse(item || '').lastName) },
+          { id: 'date', head: 'Registration Date', cell: item => JSON.parse(item || '').registrationTimestamp },
+          { id: 'status', head: 'Status', cell: item => JSON.parse(item || '').accountStatus },
           { id: 'actions', head: '', cell: item => (
             <Button
               variant="text"
-              onClick={() => setContactDetailsAccount(item.id)}
+              onClick={() => setContactDetailsAccount(JSON.parse(item || '').accountId)}
             >
               Contact Details
             </Button>
           ) },
         ]}
-        items={accounts}
+        items={items}
         isLoading={false}
       />
 

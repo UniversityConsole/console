@@ -2,7 +2,7 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import {ConsoleHeader} from "../ConsoleHeader";
 import Grid from "@mui/material/Grid";
-import {Divider} from "@mui/material";
+import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
 
 export default function Preferences() {
