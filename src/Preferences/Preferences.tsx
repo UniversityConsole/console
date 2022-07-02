@@ -24,6 +24,20 @@ export default function Preferences() {
         </Grid>
       </Grid>
       <Divider/>
+      <Grid container spacing={3} >
+        <Grid item xs={4}>
+          Preferred name
+        </Grid>
+        <Grid item xs={4}>
+          Anita Grigore
+        </Grid>
+        <Grid item xs={4}>
+          <Button variant="text">
+            Update
+          </Button>
+        </Grid>
+      </Grid>
+      <Divider/>
       <Grid container spacing={3} sx={{mb: '30px'}}>
         <Grid item xs={4}>
           Email
