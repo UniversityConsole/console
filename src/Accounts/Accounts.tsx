@@ -21,14 +21,14 @@ export default function Accounts() {
 
   const accountsFn = () => {
     let values = [];
-    let keys = Object.keys(window.localStorage);
+    let keys = Object.keys(window.localStorage).filter(key => key.startsWith('uc/account/'));
     let i = keys.length;
 
     while ( i-- ) {
       values.push(window.localStorage.getItem(keys[i]));
     }
 
-    return values
+    return values;
   }
   const items = accountsFn();
 
@@ -42,8 +42,12 @@ export default function Accounts() {
           { id: 'name',
             head: 'Name',
             cell: item => JSON.parse(item!).firstName.concat(' ', JSON.parse(item || '').lastName) },
-          { id: 'date', head: 'Registration Date', cell: item => JSON.parse(item || '').registrationTimestamp },
-          { id: 'status', head: 'Status', cell: item => JSON.parse(item || '').accountStatus },
+          { id: 'date',
+            head: 'Registration Date',
+            cell: item => JSON.parse(item || '').registrationTimestamp },
+          { id: 'status',
+            head: 'Status',
+            cell: item => JSON.parse(item || '').accountStatus },
           { id: 'actions', head: '', cell: item => (
             <Button
               variant="text"

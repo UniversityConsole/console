@@ -16,6 +16,19 @@ export default function Groups() {
     </>
   );
 
+  const getGroups = () => {
+    let values = [];
+    let keys = Object.keys(window.localStorage).filter(key => key.startsWith('uc/group/'));
+    let i = keys.length;
+
+    while ( i-- ) {
+      values.push(window.localStorage.getItem(keys[i]));
+    }
+
+    return values;
+  }
+  const items = getGroups();
+
   const groups = [
     { id: '1', name: "1st Year CTI", role: "Owner"},
     { id: '2', name: "2nd Year CTI", role: "Member"},
@@ -29,10 +42,10 @@ export default function Groups() {
       </ConsoleHeader>
       <PaginatedTable
         columnDefinitions={[
-          { id: 'name', head: 'Name', cell: item => item.name },
-          { id: 'date', head: 'Role', cell: item => item.role },
+          { id: 'name', head: 'Name', cell: item => JSON.parse(item || ''). name },
+          { id: 'role', head: 'Role', cell: item => 'Owner' }
         ]}
-        items={groups}
+        items={items}
         isLoading={false}
       />
     </>
