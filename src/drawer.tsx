@@ -28,7 +28,9 @@ export const MUIDrawer = () => {
 
   const account = JSON.parse(window.localStorage.getItem(`uc/account/${accountId}`) || '');
 
-  const initials = account.preferredName.split(" ").map((n: string)=>n[0]).join("");
+  const initialsPrefName = account.preferredName.split(" ").map((n: string)=>n[0]).join("");
+  const name = `${account.firstName} ${account.lastName}`;
+  const initials = name.split(" ").map((n: string)=>n[0]).join("");
 
   const itemList = [
     {
@@ -95,9 +97,9 @@ export const MUIDrawer = () => {
         <div>
           <CardHeader
             avatar={
-              <Avatar sx={{ bgcolor: deepPurple[500] }}>{initials}</Avatar>
+              <Avatar sx={{ bgcolor: deepPurple[500] }}>{initialsPrefName || initials}</Avatar>
             }
-            title={account.preferredName}
+            title={account.preferredName || `${account.firstName} ${account.lastName}`}
           />
         </div>
       </List>

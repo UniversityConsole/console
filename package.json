@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@mui/x-date-pickers": "^5.0.0-alpha.7",
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
     "css-loader": "^6.7.1",
