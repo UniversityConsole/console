@@ -21,6 +21,15 @@ import {deepPurple} from "@mui/material/colors";
 export const MUIDrawer = () => {
   const navigate = useNavigate();
 
+  const accountId = window.localStorage.getItem('uc/me');
+  if (accountId === null) {
+    throw new Error('No account id found');
+  }
+
+  const account = JSON.parse(window.localStorage.getItem(`uc/account/${accountId}`) || '');
+
+  const initials = account.preferredName.split(" ").map((n: string)=>n[0]).join("");
+
   const itemList = [
     {
       text: "Dashboard",
@@ -86,9 +95,9 @@ export const MUIDrawer = () => {
         <div>
           <CardHeader
             avatar={
-              <Avatar sx={{ bgcolor: deepPurple[500] }}>AG</Avatar>
+              <Avatar sx={{ bgcolor: deepPurple[500] }}>{initials}</Avatar>
             }
-            title="Anita Grigore"
+            title={account.preferredName}
           />
         </div>
       </List>

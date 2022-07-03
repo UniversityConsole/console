@@ -14,7 +14,7 @@ export const TextValueEditor = (props: Props) => {
 
   return (
     <Grid container spacing={3} direction="row">
-      <Grid item xs={4}>
+      <Grid item xs={6}>
         <TextField
             fullWidth
             margin="normal"
@@ -23,7 +23,7 @@ export const TextValueEditor = (props: Props) => {
             value={value}
             onChange={e => setValue(e.target.value)}/>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={6}>
         <div style={{display: "flex"}}>
             <Button variant="text" onClick={() => props.onCancel()}>
                 Cancel
