@@ -1,5 +1,3 @@
-import {CreateAccountInput, CreateAccountOutput} from "../AccountsEndpoint/types";
-
 export interface Course {
   readonly courseId: string;
   readonly title: string;
@@ -7,6 +5,7 @@ export interface Course {
   readonly tags: string[];
   readonly creationTimestamp: Date;
   readonly startDate: Date;
+  readonly courseMaterials: CourseMaterial[];
 }
 
 export interface CreateCourseInput {
@@ -14,10 +13,23 @@ export interface CreateCourseInput {
   readonly professor: string;
   readonly tags: string[];
   readonly startDate: Date;
+  readonly courseMaterials: CourseMaterial[];
 }
 
 export interface CreateCourseOutput {
   readonly courseId: string;
+}
+
+export enum CourseType {
+  Lesson,
+  Assignment,
+  Lecture,
+}
+export interface CourseMaterial {
+  readonly id: string
+  readonly title: string;
+  readonly body: string;
+  readonly type: CourseType;
 }
 
 type CreateCourseFn =  (

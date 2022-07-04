@@ -39,8 +39,8 @@ export default function CreateAccount() {
       .then((output: CreateAccountOutput) => {
         setLoading(false);
         setAccountId(output.accountId);
+        navigate('/accounts');
       });
-    navigate('/accounts');
   };
 
   return (

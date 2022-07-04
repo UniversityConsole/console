@@ -29,7 +29,7 @@ export default function CreateCourse() {
 
     setLoading(true);
 
-    LocalStorageEndpoint.createCourse({title, professor, tags, startDate: new Date(startDate)})
+    LocalStorageEndpoint.createCourse({title, professor, tags, startDate: new Date(startDate), courseMaterials: []})
       .then((output: CreateCourseOutput) => {
         setLoading(false);
         navigate('/courses');

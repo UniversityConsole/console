@@ -7,12 +7,20 @@ import Grid from "@mui/material/Grid";
 import {PaginatedTable} from "../DataTable";
 
 export default function Dashboard() {
-  const courses = [
-    { id: '1', title: "Computer Programming", lessons: "18/40 (48%)", professor: "Torsten Paulsson"},
-    { id: '2', title: "Data Structures", lessons: "21/23 (97%)", professor: "Nout Golstein"},
-    { id: '3', title: "Algorithms", lessons: "18/40 (48%)", professor: "Torsten Paulsson"},
+  const coursesFN = () => {
+    let values = [];
+    let keys = Object.keys(window.localStorage).filter(key => key.startsWith('uc/course/'));
+    let i = keys.length;
 
-  ]
+    while ( i-- ) {
+      values.push(window.localStorage.getItem(keys[i]));
+    }
+
+    return values;
+  }
+
+  const courses = coursesFN();
+
   return (
     <>
       <ConsoleHeader title="Dashboard"/>
@@ -27,7 +35,7 @@ export default function Dashboard() {
                 Active courses
               </Typography>
               <Typography variant="h2">
-                3
+                {courses.length}
               </Typography>
             </CardContent>
           </Card>
@@ -50,9 +58,11 @@ export default function Dashboard() {
       </Typography>
       <PaginatedTable
         columnDefinitions={[
-          { id: 'name', head: 'Course Title', cell: item => item.title },
-          { id: 'name', head: 'Lessons Completed', cell: item => item.lessons },
-          { id: 'name', head: 'Professor', cell: item => item.professor },
+          { id: 'name', head: 'Course Title', cell: item => JSON.parse(item || '').title },
+          { id: 'lessons', head: 'Lessons Completed', cell: item =>
+              JSON.parse(item || '').courseMaterials ? `0 / ${JSON.parse(item || '').courseMaterials.length}`: '0 / 0'
+          },
+          { id: 'prof', head: 'Professor', cell: item => JSON.parse(item || '').professor },
         ]}
         isLoading={false}
         items={courses}

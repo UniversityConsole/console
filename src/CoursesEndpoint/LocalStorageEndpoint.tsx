@@ -1,8 +1,8 @@
-import {Course, CourseEndpoint, CreateCourseInput, CreateCourseOutput} from "./types";
+import {CourseEndpoint, CreateCourseInput, CreateCourseOutput} from "./types";
 import DateTimeFormatOptions = Intl.DateTimeFormatOptions;
 
 export const LocalStorageEndpoint: CourseEndpoint = {
-  createCourse({title, professor, tags, startDate}: CreateCourseInput) : Promise<CreateCourseOutput> {
+  createCourse({title, professor, tags, startDate, courseMaterials}: CreateCourseInput) : Promise<CreateCourseOutput> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const courseId = self.crypto.randomUUID();
@@ -18,7 +18,8 @@ export const LocalStorageEndpoint: CourseEndpoint = {
             title,
             professor,
             tags,
-            startDate: startDateFormatted
+            startDate: startDateFormatted,
+            courseMaterials
           })
         );
 
