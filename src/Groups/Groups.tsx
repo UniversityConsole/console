@@ -29,12 +29,6 @@ export default function Groups() {
   }
   const items = getGroups();
 
-  const groups = [
-    { id: '1', name: "1st Year CTI", role: "Owner"},
-    { id: '2', name: "2nd Year CTI", role: "Member"},
-    { id: '3', name: "3rd Year CTI", role: "Member"},
-  ];
-
   return (
     <>
       <ConsoleHeader title="Groups" actions={consoleActions}>

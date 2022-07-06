@@ -2,15 +2,16 @@ import React from "react";
 import {useNavigate} from "react-router-dom";
 import Button from "@mui/material/Button";
 import {ConsoleHeader} from "../ConsoleHeader";
-import {BasicTable, PaginatedTable} from "../DataTable";
+import {BasicTable} from "../DataTable";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Chip from "@mui/material/Chip";
 import IconButton from "@mui/material/IconButton"
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
+import {Course} from "../CoursesEndpoint/types";
 
-export default function Courses() {
+export default function ListCourses() {
   const navigate = useNavigate();
 
   const consoleActions = (
@@ -35,10 +36,6 @@ export default function Courses() {
   }
   const items = coursesFn();
 
-  const handleOnClick = () => {
-    navigate('/comp-program');
-  };
-
   return (
     <>
       <ConsoleHeader title="Courses" actions={consoleActions}>
@@ -51,18 +48,15 @@ export default function Courses() {
               <Grid item xs={12}>
                 <Grid container direction="column">
                   <Stack direction="row" gap={1} alignItems="center">
-                    <div>
-                      {JSON.parse(item || '').title}
-                    </div>
-
-                    {JSON.parse(item || '').tags.map((tag: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined, idx: any) => (
-                        <Chip size="small" label={tag} variant="outlined" key={`${idx}-${JSON.parse(item || '').id}`}/>
+                    {item.title}
+                    {item.tags.map((tag: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined, idx: any) => (
+                        <Chip size="small" label={tag} variant="outlined" key={`${idx}-${item.courseId}`}/>
                       ))}
                   </Stack>
                   <Grid container>
                     <Grid item xs={12}>
                       <Typography variant="body1">
-                        Professor: {JSON.parse(item || '').professor}
+                        Professor: {item.professor}
                       </Typography>
                     </Grid>
                   </Grid>
@@ -73,19 +67,19 @@ export default function Courses() {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Typography variant="body1">
-                  Started on {JSON.parse(item || '').startDate}
+                  Started on {item.startDate}
                 </Typography>
               </Grid>
             </Grid>
           )},
           { id: 'actions', head: '', cell: item => (
-              <IconButton onClick={handleOnClick}>
+              <IconButton onClick={() => navigate(`/courses/${item.courseId}`)}>
                 <ArrowForwardIosIcon />
               </IconButton>
             ) },
         ]}
         showHeading={false}
-        items={items}
+        items={items.map(item => JSON.parse(item || '') as Course)}
         isLoading={false}
       />
     </>

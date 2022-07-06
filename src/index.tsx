@@ -10,13 +10,14 @@ import {DRAWER_WIDTH} from "./theme/drawer";
 import {Suspense} from "react";
 
 const Dashboard = React.lazy(() => import(/* webpackChunkName: "dashboard" */'./Dashboard/Dashboard'));
-const Courses = React.lazy(() => import(/* webpackChunkName: "courses" */ './Courses/Courses'));
+const Courses = React.lazy(() => import(/* webpackChunkName: "courses" */ './Courses/ListCourses'));
 const Accounts = React.lazy(() => import(/* webpackChunkName: "accounts" */ './Accounts/Accounts'));
 const Groups = React.lazy(() => import(/* webpackChunkName: "groups" */ './Groups/Groups'));
 const Preferences = React.lazy(() => import(/* webpackChunkName: "preferences" */ './Preferences/Preferences'));
 const CreateAccount = React.lazy(() => import(/* webpackChunkName: "createAccount" */ './CreateAccount/CreateAccount'));
 const CreateGroup = React.lazy(() => import(/* webpackChunkName: "createGroup" */ './CreateGroup/CreateGroup'));
 const CreateCourse = React.lazy(() => import(/* webpackChunkName: "createCourse" */ './CreateCourse/CreateCourse'));
+const Course = React.lazy(() => import(/* webpackChunkName: "courses" */ './Courses/Course'));
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
                 <Route path="/create-account" element={<CreateAccount/>}/>
                 <Route path="/create-group" element={<CreateGroup />}/>
                 <Route path="/create-course" element={<CreateCourse />}/>
+                <Route path="/courses/:courseId" element={<Course />}/>
               </Routes>
             </Suspense>
           </Box>

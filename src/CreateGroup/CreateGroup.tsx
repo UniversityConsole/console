@@ -26,8 +26,8 @@ export default function CreateGroup() {
       .then((output: CreateGroupsOutput) => {
         setLoading(false);
         setGroupId(output.groupId);
+        navigate('/groups');
       });
-    navigate('/groups');
   };
 
   return (

@@ -4,7 +4,7 @@ import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
-import TextField, {TextFieldProps} from "@mui/material/TextField";
+import TextField from "@mui/material/TextField";
 import styles from "../CreateAccount/styles.scss";
 import Button from "@mui/material/Button";
 import {FormEventHandler, useState} from "react";
@@ -18,6 +18,7 @@ export default function CreateCourse() {
   const [title, setTitle] = useState('');
   const [professor, setProfessor] = useState('');
   const [tags, setTags] = useState<string[]>([]);
+  const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState<string>('');
   const navigate = useNavigate();
 
@@ -29,7 +30,7 @@ export default function CreateCourse() {
 
     setLoading(true);
 
-    LocalStorageEndpoint.createCourse({title, professor, tags, startDate: new Date(startDate), courseMaterials: []})
+    LocalStorageEndpoint.createCourse({title, professor, tags, startDate: new Date(startDate), courseMaterials: [], description})
       .then((output: CreateCourseOutput) => {
         setLoading(false);
         navigate('/courses');
@@ -76,6 +77,19 @@ export default function CreateCourse() {
             type="text"
             value={professor}
             onChange={e => setProfessor(e.target.value)}
+          />
+        </FormControl>
+        <FormControl>
+          <TextField
+            required
+            multiline
+            label="Description"
+            fullWidth
+            margin="normal"
+            size="small"
+            type="text"
+            value={description}
+            onChange={e => setDescription(e.target.value)}
           />
         </FormControl>
         <FormControl>
